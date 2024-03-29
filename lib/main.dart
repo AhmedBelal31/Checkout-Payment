@@ -2,6 +2,8 @@ import 'package:checkout_payment/features/checkout/presentation/views/my_cart_vi
 import 'package:checkout_payment/test_view.dart';
 import 'package:flutter/material.dart';
 
+import 'features/checkout/presentation/views/payment_details_view.dart';
+
 void main() {
   runApp(const CheckoutApp());
 }
@@ -18,7 +20,7 @@ class CheckoutApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home:MyCartView(),
+      home:const MyCartView(),
     );
   }
 }
