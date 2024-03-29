@@ -1,76 +1,48 @@
-import 'package:checkout_payment/features/checkout/presentation/widgets/payment_details_view_widgets/thank_you_card.dart';
+import 'package:checkout_payment/features/checkout/presentation/widgets/custom_app_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../widgets/payment_details_view_widgets/dash_line.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
+import '../widgets/payment_details_view_widgets/thank_you_view_body.dart';
 
 class ThankYouView extends StatelessWidget {
   const ThankYouView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    int screenWidth = MediaQuery.sizeOf(context).width.toInt();
     return Scaffold(
-      appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0).copyWith(
-          top: 50,
-        ),
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              decoration: ShapeDecoration(
-                color: const Color(0xFFD9D9D9),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-            ),
-            const ThankYouCard(),
-            Positioned(
-              right: 0,
-              left: 0,
-              top: -50,
-              child: buildDoneIcon(),
-            ),
-            Positioned(
-              bottom: MediaQuery.sizeOf(context).height * .2,
-              left: -20,
-              child: const CircleAvatar(
-                backgroundColor: Colors.white,
-              ),
-            ),
-            Positioned(
-              bottom: MediaQuery.sizeOf(context).height * .2,
-              right: -20,
-              child: const CircleAvatar(
-                backgroundColor: Colors.white,
-              ),
-            ),
-            Positioned(
-              bottom: MediaQuery.sizeOf(context).height * .22,
-              left: 25,
-              right: 25,
-              child: DashedLine(screenWidth: screenWidth),
-            ),
-          ],
-        ),
+      body: Stack(
+        children: [
+          Positioned(
+            top: 40,
+            left: 20,
+            child: buildCustomAppBar(context),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(top: 40),
+            child: ThankYouViewBody(),
+          ),
+        ],
       ),
     );
   }
 
-  CircleAvatar buildDoneIcon() {
-    return const CircleAvatar(
-      radius: 50,
-      backgroundColor: Color(0xFFD9D9D9),
-      child: CircleAvatar(
-        backgroundColor: Color(0xFf34A835),
-        radius: 40,
-        child: Icon(
-          Icons.done,
-          color: Colors.white,
-          size: 60,
-        ),
-      ),
-    );
+  Widget buildCustomAppBar(BuildContext context) {
+    return Row(
+            children: [
+              Center(
+                child: GestureDetector(
+                  onTap: ()
+                  {
+                    Navigator.pop(context);
+                  },
+                  child: SvgPicture.asset(
+                    'assets/images/arrow.svg',
+                    height: 24,
+                  ),
+                ),
+              ),
+            ],
+          );
   }
 }

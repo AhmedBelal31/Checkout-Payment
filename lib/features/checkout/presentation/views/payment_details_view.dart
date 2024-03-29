@@ -10,12 +10,11 @@ class PaymentDetailsView extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(
         title: 'Payment Details ',
-        onTap: ()
-        {
+        onTap: () {
           Navigator.of(context).pop();
         },
       ),
-      body: PaymentViewBody(),
+      body: const PaymentViewBody(),
     );
   }
 }

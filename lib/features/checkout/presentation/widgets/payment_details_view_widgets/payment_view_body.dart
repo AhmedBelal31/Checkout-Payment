@@ -20,7 +20,7 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
       slivers: [
         // const SliverToBoxAdapter(
         //   child: PaymentMethodItem(
-        //       isActive: false, image: 'assets/images/master_card.svg'),
+        //       isActive: false, image: 'assets/images/master_card.svg',),
         // ),
         SliverToBoxAdapter(
           child: CustomCreditCard(
