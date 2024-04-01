@@ -2,6 +2,7 @@ import 'package:checkout_payment/features/checkout/presentation/widgets/custom_b
 import 'package:flutter/material.dart';
 import '../../views/thank_you_view.dart';
 import 'custom_credit_card.dart';
+import 'payment_methods_bottom_sheet.dart';
 
 class PaymentViewBody extends StatefulWidget {
   const PaymentViewBody({super.key});
@@ -42,6 +43,7 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
                       .push(MaterialPageRoute(builder: (context) {
                     return const ThankYouView();
                   }));
+
                   autoValidateMode = AutovalidateMode.always;
                   setState(() {});
                 }

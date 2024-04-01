@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'dash_line.dart';
 import 'thank_you_card.dart';
 
@@ -18,7 +17,7 @@ class ThankYouViewBody extends StatelessWidget {
         children: [
           Container(
             decoration: ShapeDecoration(
-              color: const Color(0xFFD9D9D9),
+              color: const Color(0xFFEDEDED),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -59,7 +58,7 @@ class ThankYouViewBody extends StatelessWidget {
   CircleAvatar buildDoneIcon() {
     return const CircleAvatar(
       radius: 50,
-      backgroundColor: Color(0xFFD9D9D9),
+      backgroundColor: Color(0xFFEDEDED),
       child: CircleAvatar(
         backgroundColor: Color(0xFf34A835),
         radius: 40,

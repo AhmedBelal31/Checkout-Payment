@@ -1,7 +1,4 @@
-import 'package:checkout_payment/features/checkout/presentation/widgets/custom_app_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import '../widgets/payment_details_view_widgets/thank_you_view_body.dart';
 
