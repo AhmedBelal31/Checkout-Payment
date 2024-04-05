@@ -4,13 +4,13 @@ class ApiService {
   final Dio dio = Dio();
 
   Future<Response> postData({
-    required String endPoint,
+    required String url,
     dynamic body,
     required String token,
     Map<String, String>? headers,
   }) {
     var response = dio.post(
-      endPoint,
+      url,
       data: body,
       options: Options(
         contentType: Headers.formUrlEncodedContentType,
