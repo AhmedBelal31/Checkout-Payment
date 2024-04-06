@@ -6,7 +6,7 @@ class ApiService {
   Future<Response> postData({
     required String url,
     dynamic body,
-    required String token,
+    String? token,
     Map<String, String>? headers,
   }) {
     var response = dio.post(
