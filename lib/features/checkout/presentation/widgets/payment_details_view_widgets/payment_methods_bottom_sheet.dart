@@ -1,5 +1,8 @@
+import 'package:checkout_payment/features/checkout/presentation/controller/payment_cubit/payment_cubit.dart';
 import 'package:checkout_payment/features/checkout/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'custom_button_bloc_consumer.dart';
 import 'payment_methods_list_view.dart';
 
 class PaymentMethodsBottomSheet extends StatefulWidget {
@@ -40,10 +43,8 @@ class _PaymentMethodsBottomSheetState extends State<PaymentMethodsBottomSheet> {
             height: 32,
           ),
 
-          CustomButton(buttonText: 'Continue', onPressed: (){}),
-          // CustomButtonBlocConsumer(
-          //   isPaypal: isPaypal,
-          // ),
+          CustomButtonBlocConsumer(),
+
         ],
       ),
     );

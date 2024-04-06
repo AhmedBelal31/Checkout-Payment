@@ -11,14 +11,28 @@ class StripeService {
   Future<PaymentIntentModel> createPaymentIntent(
       {required PaymentIntentInputModel paymentIntentInputModel}) async {
     var response = await apiService.postData(
-        url: stripeUrl,
-        token: StripeKeys.stripeSecretKey,
-        body: paymentIntentInputModel);
+      url: stripeUrl,
+      token: StripeKeys.stripeSecretKey,
+      body: paymentIntentInputModel.toJson(),
+    );
 
     var paymentIntentModel = PaymentIntentModel.fromJson(response.data);
 
     return paymentIntentModel;
   }
+
+  // Future<PaymentIntentModel> createCustomerId(
+  //     {required PaymentIntentInputModel paymentIntentInputModel}) async {
+  //   var response = await apiService.postData(
+  //     url: stripeCustomerUrl,
+  //     token: StripeKeys.stripeSecretKey,
+  //     body: paymentIntentInputModel.toJson(),
+  //   );
+  //
+  //   var paymentIntentModel = PaymentIntentModel.fromJson(response.data);
+  //
+  //   return paymentIntentModel;
+  // }
 
   Future<void> initPaymentSheet(
       {required String paymentIntentClientSecret}) async {
@@ -36,7 +50,8 @@ class StripeService {
 
   Future<void> makePayment(
       {required PaymentIntentInputModel paymentIntentInputModel}) async {
-    var paymentIntentModel = await createPaymentIntent(paymentIntentInputModel: paymentIntentInputModel);
+    var paymentIntentModel = await createPaymentIntent(
+        paymentIntentInputModel: paymentIntentInputModel);
     await initPaymentSheet(
         paymentIntentClientSecret: paymentIntentModel.clientSecret!);
     await displayPaymentSheet();

@@ -4,8 +4,9 @@ import '../../../../core/utils/styles.dart';
 class CustomButton extends StatelessWidget {
   final String buttonText;
   final void Function()? onPressed ;
+  final bool isLoading ;
 
-  const CustomButton({super.key, required this.buttonText , required this.onPressed});
+  const CustomButton({super.key, required this.buttonText ,this.isLoading = false ,  required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class CustomButton extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               )),
-          child: Text(
+          child: isLoading ? const CircularProgressIndicator() :Text(
             buttonText,
             style: AppStyles.style22,
           ),

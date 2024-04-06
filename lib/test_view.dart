@@ -70,28 +70,28 @@
 //
 // }
 
-void main() {
-  var myList = [5, 9, 3, 2, 1];
-  sortList(myList);
-  print(myList); // Prints: [1, 2, 3, 4, 5]
-}
-
-void swap(List<int> list, int index1, int index2) {
-  var temp = list[index1];
-  list[index1] = list[index2];
-  list[index2] = temp;
-}
-
-void sortList(List<int> list) {
-  for (int i = 0; i < list.length - 1; i++) {
-    int minIndex = i;
-    for (int j = i + 1; j < list.length; j++) {
-      if (list[j] < list[minIndex]) {
-        minIndex = j;
-      }
-    }
-    if (minIndex != i) {
-      swap(list, i, minIndex);
-    }
-  }
-}
+// void main() {
+//   var myList = [5, 9, 3, 2, 1];
+//   sortList(myList);
+//   print(myList); // Prints: [1, 2, 3, 4, 5]
+// }
+//
+// void swap(List<int> list, int index1, int index2) {
+//   var temp = list[index1];
+//   list[index1] = list[index2];
+//   list[index2] = temp;
+// }
+//
+// void sortList(List<int> list) {
+//   for (int i = 0; i < list.length - 1; i++) {
+//     int minIndex = i;
+//     for (int j = i + 1; j < list.length; j++) {
+//       if (list[j] < list[minIndex]) {
+//         minIndex = j;
+//       }
+//     }
+//     if (minIndex != i) {
+//       swap(list, i, minIndex);
+//     }
+//   }
+// }

@@ -1,15 +1,15 @@
 part of 'payment_cubit.dart';
 
 @immutable
-abstract class PaymentState {}
+abstract class PaymentStates {}
 
-class PaymentInitialState extends PaymentState {}
+class PaymentInitialState extends PaymentStates {}
 
-class PaymentLoadingState extends PaymentState {}
+class PaymentLoadingState extends PaymentStates {}
 
-class PaymentSuccessState extends PaymentState {}
+class PaymentSuccessState extends PaymentStates {}
 
-class PaymentFailureState extends PaymentState {
+class PaymentFailureState extends PaymentStates {
   final String errorMessage;
 
   PaymentFailureState({required this.errorMessage});
