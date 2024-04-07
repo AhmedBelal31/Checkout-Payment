@@ -12,10 +12,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import '../../controller/payment_cubit/payment_cubit.dart';
+import '../../views/my_cart_view.dart';
 import '../custom_button.dart';
 
 class CustomButtonBlocConsumer extends StatelessWidget {
-  const CustomButtonBlocConsumer({super.key});
+  final bool isPaypal;
+  const CustomButtonBlocConsumer({super.key , required this.isPaypal});
 
   @override
   Widget build(BuildContext context) {
@@ -40,28 +42,28 @@ class CustomButtonBlocConsumer extends StatelessWidget {
           isLoading: state is PaymentLoadingState,
           buttonText: 'Continue',
           onPressed: () {
-            //:Stripe Payment
-
-            // PaymentIntentInputModel paymentIntentInputModel =
-            //     PaymentIntentInputModel(
-            //   amount: '100',
-            //   currency: 'USD',
-            //   customerId:StripeKeys.stripeCustomId
-            // );
-            // BlocProvider.of<PaymentCubit>(context).makePayment(
-            //   paymentIntentInputModel: paymentIntentInputModel,
-            // );
-
-            var transactionsData = getTransactionsData();
-            executePaypalPayment(context, transactionsData);
+            if (isPaypal) {
+              var transactionsData = getTransactionsData();
+              executePaypalPayment(context, transactionsData);
+            } else {
+              executeStripePayment(context);
+            }
           },
         );
       },
     );
   }
 
+  void executeStripePayment(BuildContext context) {
+    PaymentIntentInputModel paymentIntentInputModel = PaymentIntentInputModel(
+        amount: '100', currency: 'USD', customerId: StripeKeys.stripeCustomId);
+    BlocProvider.of<PaymentCubit>(context).makePayment(
+      paymentIntentInputModel: paymentIntentInputModel,
+    );
+  }
+
   void executePaypalPayment(BuildContext context, transactionsData) {
-     Navigator.of(context).push(
+    Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => PaypalCheckoutView(
           sandboxMode: true,
@@ -77,11 +79,32 @@ class CustomButtonBlocConsumer extends StatelessWidget {
           note: "Contact us for any questions on your order.",
           onSuccess: (Map params) async {
             log("onSuccess: $params");
-            Navigator.pop(context);
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return const ThankYouView();
+              }),
+                  (route) {
+                if (route.settings.name == '/') {
+                  return true;
+                } else {
+                  return false;
+                }
+              },
+            );
           },
           onError: (error) {
-            log("onError: $error");
-            Navigator.pop(context);
+            SnackBar snackBar = SnackBar(content: Text(error.toString()));
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return const MyCartView();
+              }),
+                  (route) {
+                return false;
+              },
+            );
           },
           onCancel: () {
             print('cancelled:');

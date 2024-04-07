@@ -14,6 +14,10 @@ migrate_working_dir/
 
 # Ignore stripe_keys.dart
 lib/core/utils/stripe_keys.dart
+
+# Ignore paypal_keys.dart
+lib/core/utils/paypal_keys.dart
+
 # IntelliJ related
 *.iml
 *.ipr

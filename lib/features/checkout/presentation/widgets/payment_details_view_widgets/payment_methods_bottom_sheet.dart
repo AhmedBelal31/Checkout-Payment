@@ -43,7 +43,7 @@ class _PaymentMethodsBottomSheetState extends State<PaymentMethodsBottomSheet> {
             height: 32,
           ),
 
-          CustomButtonBlocConsumer(),
+           CustomButtonBlocConsumer(isPaypal:isPaypal,),
 
         ],
       ),
